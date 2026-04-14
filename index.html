@@ -1,0 +1,1524 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Дарья Мамаева | Портфолио</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,700&family=Montserrat:wght@300;400;600&family=Cormorant+Garamond:ital,wght@1,600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-cream: #fdfaf5;
+            --accent-red: #8b1a1a;
+            --text-dark: #1a1a1a;
+            --transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.5;
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            align-items: center; /* Центрирование по вертикали */
+            background-color: var(--bg-cream);
+            overflow: hidden; /* Чтобы фото не вылезало */
+            position: relative;
+        }
+
+        /* Стили оверлея */
+.overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(253, 250, 245, 0.98); /* Кремовый фон как у сайта */
+    z-index: 1000;
+    overflow-y: auto;
+    padding: 50px 0;
+}
+
+.overlay-content {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+.close-overlay {
+    position: absolute;
+    right: 20px;
+    top: -20px;
+    font-size: 2.5rem;
+    cursor: pointer;
+    color: var(--text-dark);
+}
+
+.case-main-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--accent-red);
+    margin-bottom: 10px;
+}
+
+.case-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    margin-top: 40px;
+}
+
+/* Стили метрик */
+.case-stats {
+    background: #fff;
+    padding: 30px;
+    border: 1px solid #eee;
+}
+
+.stats-title {
+    font-family: 'Playfair Display', serif;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--accent-red);
+    padding-bottom: 10px;
+}
+
+.stat-item {
+    margin-bottom: 25px;
+}
+
+.stat-label {
+    display: block;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    color: #888;
+    margin-bottom: 5px;
+}
+
+.stat-comparison {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.stat-arrow {
+    font-size: 1.2rem;
+    color: #ccc;
+}
+
+.highlight {
+    color: var(--accent-red);
+    font-weight: bold;
+}
+
+.visual-placeholder {
+    width: 100%;
+    aspect-ratio: 9/16; /* Вертикальный формат Reels */
+    background: #f0f0f0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #ddd;
+}
+
+@media (max-width: 768px) {
+    .case-grid { grid-template-columns: 1fr; }
+}
+
+        /* Контейнер для текста (слева) */
+        .hero-text-container {
+            flex: 1; /* Занимает 50% ширины */
+            padding: 0 10%; /* Отступы для воздуха */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6rem); /* Адаптивный размер */
+            color: var(--accent-red);
+            text-transform: uppercase;
+            line-height: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: clamp(1.2rem, 3vw, 1.8rem);
+            color: var(--text-dark);
+            letter-spacing: 1px;
+            margin-bottom: 40px;
+        }
+
+        /* Контейнер для фото (справа) */
+        .hero-image-container {
+            flex: 1; /* Занимает 50% ширины */
+            height: 100%;
+            position: relative;
+        }
+
+        .hero-photo {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Фото заполняет контейнер, не искажаясь */
+            object-position: center; /* Центрирование фото */
+            /* Эффект легкого тонирования в цвет фона для гармонии */
+            filter: sepia(20%) contrast(110%); 
+        }
+
+        /* Декоративный элемент в стиле референсов (тонкая линия) */
+        .hero-image-container::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            right: 20px;
+            bottom: 20px;
+            border: 1px solid rgba(253, 250, 245, 0.5); /* Кремовая рамка поверх фото */
+            z-index: 1;
+        }
+
+        /* Адаптация для мобильных устройств */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column-reverse; /* Фото сверху, текст снизу */
+                text-align: center;
+            }
+            .hero-text-container {
+                padding: 40px 20px;
+                flex: none;
+                height: 50%;
+            }
+            .hero-image-container {
+                flex: none;
+                height: 50%;
+                width: 100%;
+            }
+            .hero-title {
+                font-size: 3rem;
+            }
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 10vw, 6rem);
+            color: var(--accent-red);
+            text-transform: uppercase;
+            line-height: 0.9;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-size: 1.5rem;
+        }
+
+        .marquee {
+            background: var(--accent-red);
+            color: white;
+            padding: 15px 0;
+            white-space: nowrap;
+            overflow: hidden;
+            display: flex;
+            border-bottom: 1px solid var(--text-dark);
+        }
+
+        .marquee-content {
+            display: inline-block;
+            animation: marquee 30s linear infinite;
+            font-family: 'Playfair Display', serif;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        nav {
+            padding: 20px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            background: rgba(253, 250, 245, 0.9);
+            z-index: 100;
+            backdrop-filter: blur(5px);
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        nav a {
+            margin: 0 15px;
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        section {
+            padding: 80px 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            text-align: center;
+            color: var(--accent-red);
+            text-transform: uppercase;
+        }
+
+        .resume-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 50px;
+        }
+
+        .resume-column h3 {
+            font-family: 'Playfair Display', serif;
+            border-bottom: 2px solid var(--accent-red);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            font-size: 1.2rem;
+        }
+
+        .experience-box {
+            margin-bottom: 35px;
+            position: relative;
+            padding-left: 20px;
+            border-left: 1px solid #ddd;
+            transition: var(--transition);
+        }
+
+        .experience-box:hover {
+            border-left: 1px solid var(--accent-red);
+            transform: translateX(5px);
+        }
+
+        .exp-year {
+            font-size: 0.8rem;
+            font-weight: bold;
+            color: var(--accent-red);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .exp-company {
+            font-weight: 600;
+            font-size: 1.05rem;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        .exp-role {
+            font-style: italic;
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 1.1rem;
+            color: #555;
+            margin-bottom: 10px;
+            display: block;
+        }
+
+        .experience-box ul {
+            list-style: none;
+            font-size: 0.85rem;
+            color: #444;
+        }
+
+        .experience-box li::before {
+            content: "— ";
+            color: var(--accent-red);
+        }
+
+        /* Кнопка Резюме */
+        .resume-action {
+            text-align: center;
+            padding: 40px 0;
+            border-top: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .btn-full-cv {
+            display: inline-block;
+            padding: 20px 50px;
+            background: var(--accent-red);
+            color: white;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            transition: var(--transition);
+            border: 1px solid var(--accent-red);
+        }
+
+        .btn-full-cv:hover {
+            background: transparent;
+            color: var(--accent-red);
+            transform: scale(1.05);
+        }
+
+        .btn-main {
+    display: inline-block;
+    padding: 12px 35px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--text-dark);
+    text-decoration: none;
+    border: 1px solid var(--text-dark); /* Тонкая рамка в цвет текста */
+    background: transparent;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Эффект при наведении */
+.btn-main:hover {
+    color: var(--bg-cream);
+    background-color: var(--text-dark); /* Кнопка заливается цветом при наведении */
+    letter-spacing: 5px; /* Легкое расширение текста для динамики */
+}
+
+/* Декоративная линия под кнопкой (опционально для усиления акцента) */
+.hero-cta-wrapper {
+    margin-top: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+@media (max-width: 768px) {
+    .hero-cta-wrapper {
+        align-items: center; /* Центрируем кнопку на мобильных */
+    }
+}
+
+        /* Портфолио */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .polaroid {
+            background: white;
+            padding: 15px 15px 40px 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            text-decoration: none;
+            color: inherit;
+            transition: var(--transition);
+            text-align: center;
+        }
+
+        .polaroid:hover {
+            transform: translateY(-10px) rotate(0deg) !important;
+        }
+
+        .polaroid-img {
+            height: 300px;
+            background: #eee;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--accent-red);
+            margin-bottom: 15px;
+        }
+
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s ease; }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        @media (max-width: 900px) {
+            .resume-container { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+
+
+    <div id="case-overlay" class="overlay">
+    <div class="overlay-content">
+        <span class="close-overlay" onclick="closeCase()">&times;</span>
+        
+        <div class="case-header">
+            <h2 class="case-main-title">Кейс: развитие TikTok Meet Market</h2>
+        </div>
+
+        <div class="case-grid">
+            <div class="case-visual">
+                <div class="visual-container-9-16">
+    <img src="meet.jpeg" alt="Обложка кейса Видеопродакшен" class="case-img-ratio">
+</div>
+              
+            </div>
+
+            <div class="case-stats">
+                <h4 class="stats-title">Результаты (До / После)</h4>
+                
+                <div class="stat-item">
+                    <span class="stat-label">Период</span>
+                    <div class="stat-comparison">
+                        <span class="val-before">июль</span>
+                        <span class="stat-arrow">→</span>
+                        <span class="val-after highlight">октябрь</span>
+                    </div>
+                </div>
+
+                <div class="stat-item">
+                    <span class="stat-label">Подписчики</span>
+                    <div class="stat-comparison">
+                        <span class="val-before">14</span>
+                        <span class="stat-arrow">→</span>
+                        <span class="val-after highlight">850</span>
+                    </div>
+                </div>
+
+                <div class="stat-item">
+                    <span class="stat-label">Просмотры публикаций</span>
+                    <div class="stat-comparison">
+                        <span class="val-after highlight">1.7м</span>
+                    </div>
+                </div>
+<div class="stat-item">
+                    <span class="stat-label">Просмотры профиля</span>
+                    <div class="stat-comparison">
+                        <span class="val-after highlight">13к</span>
+                    </div>
+                </div>
+
+<div class="stat-item">
+                    <span class="stat-label">Лайки</span>
+                    <div class="stat-comparison">
+                        <span class="val-after highlight">45к</span>
+                    </div>
+                </div>
+
+                <div class="stat-item">
+                    <span class="stat-label">Комментарии</span>
+                    <div class="stat-comparison">
+                        <span class="val-after highlight">1 425</span>
+                    </div>
+                </div>
+
+<div class="stat-item">
+                    <span class="stat-label">Репосты</span>
+                    <div class="stat-comparison">
+                        <span class="val-after highlight">4 570</span>
+                    </div>
+                </div>
+
+                
+               
+            </div>
+        </div>
+    </div>
+
+        
+
+<div class="tiktok-grid-quad">
+    
+    <div class="tiktok-row">
+        <div class="media-box video-box">
+            <div class="ratio-9-16">
+                <iframe 
+                    src="https://rutube.ru/play/embed/fed51542daf8d6fd2b3c358ed1887d1b/?p=1" 
+                    frameBorder="0" allowFullScreen class="rutube-player">
+                </iframe>
+                <div class="media-label">Видео 1</div>
+            </div>
+        </div>
+        <div class="media-box stats-box">
+            <div class="ratio-9-16">
+                <img src="IMG_3504.PNG" alt="Stats 1">
+                <div class="media-label stats-label">Аналитика 1</div>
+            </div>
+        </div>
+
+        <div class="media-box video-box">
+            <div class="ratio-9-16">
+                <iframe 
+                    src="https://rutube.ru/play/embed/73d801a8d7013639e992befd553d810c/?p=1" 
+                    frameBorder="0" allowFullScreen class="rutube-player">
+                </iframe>
+                <div class="media-label">Видео 2</div>
+            </div>
+        </div>
+        <div class="media-box stats-box">
+            <div class="ratio-9-16">
+                <img src="IMG_3506.PNG" alt="Stats 2">
+                <div class="media-label stats-label">Аналитика 2</div>
+            </div>
+        </div>
+    </div> <div class="tiktok-row">
+        <div class="media-box video-box">
+            <div class="ratio-9-16">
+                <iframe 
+                    src="https://rutube.ru/play/embed/5471921ca1f8e55ee7d385eab4cc0715/?p=1" 
+                    frameBorder="0" allowFullScreen class="rutube-player">
+                </iframe>
+                <div class="media-label">Видео 3</div>
+            </div>
+        </div>
+        <div class="media-box stats-box">
+            <div class="ratio-9-16">
+                <img src="IMG_3508.png" alt="Stats 3">
+                <div class="media-label stats-label">Аналитика 3</div>
+            </div>
+        </div>
+
+        <div class="media-box video-box">
+            <div class="ratio-9-16">
+                <iframe 
+                    src="https://rutube.ru/play/embed/ID_4/?p=1" 
+                    frameBorder="0" allowFullScreen class="rutube-player">
+                </iframe>
+                <div class="media-label">Видео 4</div>
+            </div>
+        </div>
+        <div class="media-box stats-box">
+            <div class="ratio-9-16">
+                <img src="IMG_3510.png" alt="Stats 4">
+                <div class="media-label stats-label">Аналитика 4</div>
+            </div>
+        </div>
+    </div> </div> 
+
+        
+<body>
+
+<header>
+    <div class="hero-text-container">
+        <div class="hero-title">Дарья<br>Мамаева</div>
+        <p class="hero-subtitle">Медиаменеджер & Журналист</p>
+        
+        <div class="hero-cta-wrapper">
+            <a href="#portfolio" class="btn-main">Смотреть работы</a>
+        </div>
+    </div>
+    
+    <div class="hero-image-container">
+        <img src="IMG_0742.jpg" alt="Дарья Мамаева" class="hero-photo">
+    </div>
+</header>
+
+    <div class="marquee">
+        <div class="marquee-content">
+            &nbsp;• SMM • КОПИРАЙТИНГ • РЕДАКТУРА • ВИДЕОПРОДАКШН • КРЕАТИВ • SMM • КОПИРАЙТИНГ • РЕДАКТУРА • ВИДЕОПРОДАКШН • КРЕАТИВ
+        </div>
+        <div class="marquee-content">
+            &nbsp;• SMM • КОПИРАЙТИНГ • РЕДАКТУРА • ВИДЕОПРОДАКШН • КРЕАТИВ • SMM • КОПИРАЙТИНГ • РЕДАКТУРА • ВИДЕОПРОДАКШН • КРЕАТИВ
+        </div>
+    </div>
+
+    <nav>
+        <a href="#about">Опыт</a>
+        <a href="#portfolio">Портфолио</a>
+        <a href="#contact">Контакты</a>
+    </nav>
+
+    <section id="about" class="reveal">
+        <h2>Профессиональный путь</h2>
+        
+        <div class="resume-container">
+            <div class="resume-column">
+                <h3>Опыт работы</h3>
+                
+                <div class="experience-box">
+                    <span class="exp-year">2024 — 2025</span>
+                    <span class="exp-company">Meet Market</span>
+                    <span class="exp-role">Креативный менеджер</span>
+                    <ul>
+                        <li>Адаптация стратегии, создание контента</li>
+                    </ul>
+                </div>
+
+                <div class="experience-box">
+                    <span class="exp-year">2024 — 2025</span>
+                    <span class="exp-company">Manerate</span>
+                    <span class="exp-role">Копирайтер</span>
+                    <ul>
+                        <li>Тексты для ресторанных проектов</li>
+                    </ul>
+                </div>
+
+                <div class="experience-box">
+                    <span class="exp-year">2024</span>
+                    <span class="exp-company">Комсомольская правда</span>
+                    <span class="exp-role">Администратор tg-канала</span>
+                </div>
+                
+                <div class="experience-box">
+                    <span class="exp-year">2024</span>
+                    <span class="exp-company">Neva Today</span>
+                    <span class="exp-role">Журналист-новостник</span>
+                </div>
+
+                <div class="experience-box">
+                    <span class="exp-year">2023</span>
+                    <span class="exp-company">Администрация Пушкинского р-на</span>
+                    <span class="exp-role">Сектор информации</span>
+                </div>
+            </div>
+
+            <div class="resume-column">
+                <h3>Стажировки</h3>
+
+                <div class="experience-box">
+                    <span class="exp-year">2026</span>
+                    <span class="exp-company">РБК</span>
+                    <ul>
+                        <li>Бизнес-день в Казани</li>
+                    </ul>
+                </div>
+
+                <div class="experience-box">
+                    <span class="exp-year">2025</span>
+                    <span class="exp-company">Simple Wine</span>
+                    <ul>
+                        <li>Event-механики</li>
+                    </ul>
+                </div>
+
+                <div class="experience-box">
+                    <span class="exp-year">2023</span>
+                    <span class="exp-company">Телеканал 78</span>
+                    <ul>
+                        <li>Съемки и расшифровки</li>
+                    </ul>
+                </div>
+
+                <div class="experience-box">
+                    <span class="exp-year">2022</span>
+                    <span class="exp-company">Авторадио СПб</span>
+                    <ul>
+                        <li>Монтаж и интервью</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="resume-action">
+            <a href="https://drive.google.com/file/d/1mBSMP8ZKCt3BIeTKv2RhxmzAuBVMblDY/view?usp=sharing" target="_blank" class="btn-full-cv">
+                Посмотреть полное резюме (PDF)
+            </a>
+        </div>
+    </section>
+
+<section id="portfolio" class="reveal">
+    <h2>Портфолио</h2>
+    <div class="portfolio-grid">
+        <div class="polaroid" style="transform: rotate(-2deg); cursor: pointer;" onclick="toggleMainFolder()">
+            <div class="polaroid-img">ТЕКСТЫ</div>
+            <p class="hero-subtitle">Журналистика и копирайт</p>
+            <span id="folder-status" style="font-size: 0.7rem; color: var(--accent-red); font-weight: bold;">(ОТКРЫТЬ СПИСОК РАБОТ)</span>
+        </div>
+
+
+         <div class="polaroid" style="transform: rotate(-2deg); cursor: pointer;" onclick="openCase('video-production')">
+            <div class="polaroid-img">ВИДЕОПРОДАКШЕН</div>
+            <p class="hero-subtitle">Reels, сценарии, охваты</p>
+            <span id="folder-status" style="font-size: 0.7rem; color: var(--accent-red); font-weight: bold;">(ОТКРЫТЬ СПИСОК РАБОТ)</span>
+        </div>
+
+
+
+        <a href="https://docs.google.com/document/d/19uby1183Vfg6hvDo68lnPg07vG5e-WKEgw9Jft194Ro/edit?usp=sharing" class="polaroid" style="transform: rotate(-1deg);" target="_blank">
+            <div class="polaroid-img">РЕДАКТУРА</div>
+            <p class="hero-subtitle">Кейсы и правки</p>
+        </a>
+    </div>
+
+    <div id="text-folder" style="display: none; margin-top: 50px; background: #fff; border: 1px solid #eee; padding: 40px;">
+        <h3 style="font-family: 'Playfair Display', serif; text-align: center; margin-bottom: 40px; color: var(--accent-red);">Выберите категорию материала:</h3>
+        
+        <div style="display: flex; flex-direction: column; gap: 10px; max-width: 600px; margin: 0 auto;">
+            <button class="text-nav-btn" onclick="showArticle('rbc')">Аналитический материал для РБК</button>
+            <button class="text-nav-btn" onclick="showArticle('itmo')">Материал для сайта ИТМО</button>
+            <button class="text-nav-btn" onclick="showArticle('hse')">Материал для сайта НИУ ВШЭ</button>
+            <button class="text-nav-btn" onclick="showArticle('report')">Репортаж</button>
+            <button class="text-nav-btn" onclick="showArticle('b2b')">Материал для Я-дзена (B2B сегмент)</button>
+            <button class="text-nav-btn" onclick="showArticle('tetto-smm')">Материал для соцсетей Tetto Italian Bistro</button>
+            <button class="text-nav-btn" onclick="showArticle('balcon')">Материал для лаундж-бара Balcon</button>
+            <button class="text-nav-btn" onclick="showArticle('tetto-rest')">Материал для ресторана TÉTTO</button>
+        </div>
+
+        <div id="article-display" style="margin-top: 60px; display: none; border-top: 1px solid #eee; padding-top: 40px;">
+            <div id="article-content" style="max-width: 800px; margin: 0 auto; line-height: 1.8; font-family: 'Montserrat', sans-serif;">
+                </div>
+        </div>
+    </div>
+</section>
+
+<style>
+
+    .rutube-player {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+/* Контейнер для четырехколоночной сетки */
+.tiktok-grid-quad {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    margin-top: 30px;
+    max-width: 1200px; /* Ограничиваем ширину, чтобы блоки не были слишком огромными */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Строка из 4-х элементов */
+.tiktok-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr); /* 4 колонки в ряд */
+    gap: 15px;
+    background: #fff;
+    padding: 15px;
+    border-bottom: 1px solid #eee; /* Разделитель между рядами */
+}
+
+/* Пропорции 9:16 (сохраняем) */
+.ratio-9-16 {
+    position: relative;
+    padding-top: 177.77%; 
+    background: #f8f8f8;
+    overflow: hidden;
+    border: 1px solid #eee;
+    transition: transform 0.3s ease;
+}
+
+.ratio-9-16:hover {
+    transform: translateY(-5px); /* Легкий эффект при наведении */
+    box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+}
+
+.ratio-9-16 video, 
+.ratio-9-16 img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Метки */
+.media-label {
+    position: absolute;
+    bottom: 8px;
+    left: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 3px 8px;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.stats-label {
+    background: var(--accent-red);
+}
+
+/* --- АДАПТИВНОСТЬ (Критически важно!) --- */
+
+/* На планшетах делаем 2 ряда по 2 элемента */
+@media (max-width: 1024px) {
+    .tiktok-row {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 20px;
+    }
+}
+
+/* На телефонах — 1 колонка (всё в столбик) */
+@media (max-width: 600px) {
+    .tiktok-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+    /* Контейнер, задающий пропорцию 9:16 */
+.visual-container-9-16 {
+    width: 100%;
+    position: relative;
+    /* Уловка с padding-top для фиксации соотношения сторон */
+    /* (16 / 9) * 100 = 177.77% */
+    padding-top: 177.77%; 
+    overflow: hidden; /* Чтобы картинка не вылезала */
+    background-color: #f0f0f0; /* Фон, пока грузится фото */
+    border: 1px solid #eee;
+}
+
+/* Стили самой картинки внутри контейнера */
+.case-img-ratio {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Самое важное свойство: фото заполняет блок, не искажаясь */
+    object-fit: cover; 
+    object-position: center; /* Центрируем изображение */
+}
+    /* Стили для кнопок навигации внутри текстов */
+    .text-nav-btn {
+        background: transparent;
+        border: 1px solid #ddd;
+        padding: 15px 25px;
+        text-align: left;
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+        font-size: 0.8rem;
+        letter-spacing: 1px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .text-nav-btn:hover {
+        background: var(--accent-red);
+        color: white;
+        border-color: var(--accent-red);
+        padding-left: 35px;
+    }
+    .text-nav-btn.active {
+        background: var(--accent-red);
+        color: white;
+    }
+</style>
+
+<script>
+    const articles = {
+        rbc: `
+            <div style="background: #fff; padding: 20px 0;">
+            <p style="text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: #888; margin-bottom: 10px;">Аналитический материал для РБК</p>
+            
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; line-height: 1.2; margin-bottom: 20px; color: var(--text-dark);">
+                Пятый кризис: Наталья Зубаревич – о характере нового спада экономики
+            </h1>
+
+            <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.3rem; line-height: 1.4; color: #555; margin-bottom: 30px; border-left: 2px solid var(--accent-red); padding-left: 20px;">
+                Стимул бюджетных вливаний в экономику затухает, и весь 2026 год пройдет в условиях «жесткой адаптации» к экономическому спаду. Такое мнение высказала профессор географического факультета МГУ Наталья Зубаревич, выступая на деловом форуме «Business Day РБК» в Казани. «Надо расстаться с иллюзией, что большие бюджетные вливания могут быть бесконечным драйвером экономики», - подчеркнула она. Спад затронет подавляющую часть гражданских отраслей и большинство регионов, даже бурно растущий в прошлые годы бизнес кафе и ресторанов оказался в зоне рисков, отметила она. Качественное управление на уровне региона или компании не сможет компенсировать общий негативный тренд, но все же управлять правильно – сейчас важно. В своей лекции перед представителями бизнеса Наталья Зубаревич рассказала, как проявляется кризис на разных территориях страны, кто справляется лучше других, и на что можно «ставить» компаниям в сложное время. 
+            </p>
+
+
+
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 40px 0 20px; color: var(--accent-red);">«Пятый кризис – и вы уже не удивляетесь»</h3>
+                
+                <p>Статистика говорит о том, что Россия вступила в пятый экономический кризис. Бизнес уже не удивляется, правда? Дело почти привычное, хотя все равно трудное. Консенсусный прогноз макроэкономистов сводится к тому, что первого полугодия 2026 года для развития просто не будет. Оптимисты рассчитывают, что дно будет пройдено в начале года, после чего начнется медленное «отползание» вверх. Реалисты же советуют настраиваться на то, что в режиме жесткой адаптации придется провести весь 2026 год.</p>
+
+                <p></p>
+                <p>Что видно по итогам 2025 года? Рост валового внутреннего продукта фактически затух, а промышленность чувствует себя весьма посредственно. Добывающий сектор, который долгие годы служил главным локомотивом экономики, донором бюджета и подушкой безопасности для всей страны, уже довольно давно находится в отрицательной зоне.</p>
+
+                <p></p>
+                <p> Инвестиции в экономику рухнули, чего и следовало ожидать. Строительная отрасль балансирует на грани стагнации с символическим ростом в 1,2%, при этом ввод жилья ведет себя крайне непредсказуемо, совершая резкие скачки то вверх, то вниз. Хотя в четвертом квартале 2025 года и наметился подъем, общая картина за год - далеко не оптимистична. </p.
+              <p></p>
+              <p>Грузооборот транспортных перевозок находится в минусе, а объемы розничной торговли просели на 2%. На этом фоне общепит выглядит гораздо лучше – он пока держится, но надежд на то, что его рост продолжится в 2026 году, все меньше. Номинальные зарплаты растут довольно значимо, но уже не такими темпами, как в начале 2025 года. Реальные доходы населения также растут, но постепенно теряют динамику.  Гонка зарплат, спровоцированная дефицитом кадров, начинает остывать – это одна из немногих хороших новостей для бизнеса: вам станет легче. С другой стороны, завершение роста реальных зарплат неизбежно скажется на потребительской активности в ближайшем будущем.</p>
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 40px 0 20px; color: var(--accent-red);">Отраслевой раскол: в плюсе – ВПК, золото и удобрения</h3>
+                
+                <p>Что происходит в разных секторах экономики? Почти вся добыча ушла в минус. В металлургической отрасли положительную динамику демонстрирует исключительно добыча золота. Лесопереработка находится в затяжном кризисе уже не первый год. </p>
+                 <p></p>
+                 <p>Посмотрим на потребительский рынок. По итогам 2025 года в производстве мебели небольшой плюс сохранился только в сегменте кухонных и стенных шкафов. Все остальное – от автомобилей до бытовой техники и мягкой мебели – демонстрирует отрицательные показатели. Высокие ставки по кредитам и неуверенность граждан в завтрашнем дне вынуждают откладывать крупные покупки до лучших времен. Единственным островком стабильности среди потребительских отраслей остается фарма, показавшая хороший рост на 15%.</p>
+                      <p></p>
+                      <blockquote style="border-left: 3px solid var(--accent-red); padding-left: 20px; margin: 30px 0; font-style: italic; color: #1a1a1a; background: #f9f9f9; padding: 20px;">
+                    Производство продуктов питания колеблется около нуля. Более того, упали объемы производства водки! Когда я вижу, что водка ушла в минус, я рыдаю и спрашиваю: «Что случилось с этой страной?» Водка в минусе – это аномалия.  
+                </blockquote>
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 40px 0 20px; color: var(--accent-red);">Будет ли безработица?</h3>
+                <p>Перейдем к людям. По-прежнему наша главная проблема - демографическая пирамида. На рынок труда вышло малочисленное поколение, которое на 30% меньше поколения 35-летних. Борьба за человеческий ресурс будет актуальна для российских территорий до 2030-х годов, когда на рынок начнут выходить дети периода «материнского капитала». Впрочем, за подъемом последует новый демографический провал.</p>
+<p></p>
+
+<p>Трудовых мигрантов в стране стало меньше — по оценкам экспертов, около 3–3,5 млн человек вместо прежних 4,5 млн. Переход на визовых мигрантов (например, из Индии и Северной Кореи) — это сложный путь. Квоты на визовый наем в 2025 году не были выбраны бизнесом даже наполовину. Нанять визового мигранта может только крупное предприятие, у которого есть ресурсы на тестирование и организацию «особого» процесса трудоустройства. У малого и среднего бизнеса таких возможностей нет.</p>
+<p></p>
+
+<p>Трудности в большинстве гражданских отраслей влекут за собой и проблемы для их персонала. Открытой безработицы тем не менее не будет. У нас не принято увольнять людей – у нас переводят на неполную занятость. Это может быть неполная рабочая неделя или, например, отпуска без сохранения содержания. Если посчитать долю работающих неполное время сотрудников от среднесписочной численности занятых (по данным крупных и средних предприятий, так как по малому бизнесу статистики нет), то картина следующая: в среднем по стране это 4,6%, а в Татарстане, например, — уже 6%. Главное, что не дотянули до показателей Самарской области с ее «АвтоВАЗом», который давно и плотно сидит на неполной занятости. Тем не менее, Татарстан как индустриальный регион входит в число лидеров по росту скрытой безработицы еще с четвертого квартала 2025 года. Это тревожный сигнал для бизнеса, потому что люди теряют в доходах. </p>
+<p></p>
+
+<p>Если посмотреть на динамику номинальных зарплат (без учета инфляции), то пик пришелся на 2024 год — тогда рост составил более 18%. В 2025 году мы увидели замедление: по итогам года рост составил около 14%. Для работодателей есть хорошая новость (и плохая – для потребительского рынка): гонка зарплат в России затухает. Судя по всему, в 2026 году она окончательно завершится. <p>
+<p></p>
+
+<p>Региональная статистика Росстата требует аккуратного обращения. Тем не менее, если взять данные нарастающим итогом за четыре года (с базовым 2021-м), можно выделить список территорий-победителей: Москва, Тюменская область, Новосибирск, Татарстан, Ханты-Мансийск, Ленинградская область и Санкт-Петербург. Именно эти регионы за четыре года показали наибольший прирост доходов населения — не 29%, как в среднем по стране, а 35–40%. Хуже всего дела с доходами обстоят на «лесном» Северо-Западе и в ряде регионов Приволжского федерального округа.</p>
+
+<p></p>
+
+<p>Разговоры о том, что последние четыре года помогли жителям бедных и слабых районов (за счет контрактных выплат участникам СВО и их семьям), не подтверждаются цифрами. Реальность от Росстата иная: по росту доходов выиграли богатые регионы. </p>
+
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 40px 0 20px; color: var(--accent-red);">Разрыв между регионами нарастает</h3>
+                
+                <p>В 2022 году многие регионы смогли быстро восстановиться после спада, по принципу  «упал – отжался». В 2023 году рост был уже массовым. Однако далее произошел слом нормального распределения, и в 2024 году картина «развалилась» на фрагменты: общего роста не стало. В 2025 году разрыв между экономическими результатами субъектов только усилился. </p>
+
+<p></p>
+
+<p>Распределение инвестиций между регионами страны крайне неравномерно. Москва притягивает деньги благодаря концентрации штаб-квартир корпораций и платежеспособному потребительскому рынку. Татарстан и Санкт-Петербург находятся  примерно на одном уровне по инвестиционной привлекательности. Ситуация в большинстве других регионов – не радужная и ухудшается.</p>
+
+<p></p>
+
+<p>Субъекты, где доминирует гражданская промышленность, начали испытывать серьезные трудности еще во второй половине 2024 года. В то же время регионы с мощным военно-промышленным комплексом продолжают демонстрировать высокую динамику. Эта дифференциация в 2026 году будет только усиливаться. Северо-Запад страны, за исключением Петербурга и Ленобласти, после санкционного удара так и не смог восстановиться, в Сибири экономический рост также остается крайне слабым. Лидерами роста стали Курганская область, Удмуртия и Татарстан.</p>
+
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 40px 0 20px; color: var(--accent-red);">Строительный сектор: дачи спасают статистику</h3>
+                
+                <p>Ситуация в строительной сфере вызывает вопросы. В 2025 году стройка в целом по стране показала формальный ноль, хотя номинально зафиксирован небольшой плюс - около 2% роста отрасли за счет крупных индустриальных проектов и инфраструктурных строек. Но рост инвестиций в этих нишах далеко не всегда означает рост капитального строительства. Зачастую эти средства направляются на закупку оборудования, замену выбывающих мощностей и модернизацию существующих технологических линий, что не дает эффекта в виде строительных объемов.</p>
+<p></p>
+
+<p>Кто держится? Конечно, Москва и Московская область — там всегда идет рост. В Москве ситуация особая: идет масштабная программа реновации за бюджетные деньги. В 2025 году город ввел жилья больше, чем любой крупнейший частный застройщик. В Московской области 75% ввода — это ИЖС и дачи. За счет их регистрации можно прекрасно улучшить статистику по квадратным метрам.</p>
+
+<p></p>
+
+<p>В других регионах картина более печальная. В Санкт-Петербурге зафиксирован спад в строительстве на целых 23%. Показатели немного подтянули, опять же, за счет ИЖС и регистрации дач — там было много «забавного» со статистикой. Зарегистрировать квадратные метры на уже оформленных дачах не составляет труда, когда нужно выполнить KPI по вводу жилья. В Татарстане – нулевая динамика в строительстве, и это победа на фоне глубоких минусов его ближайших соседей по Приволжскому федеральному округу – Самары, Нижнего Новгорода или Башкортостана.</p>
+
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 40px 0 20px; color: var(--accent-red);">«Конец прекрасной эпохи» и 70 дефицитных регионов</h3>
+                
+                <p>Очень тревожный сигнал – провал показателей региональных бюджетов. В среднем по стране доходы консолидированных бюджетов выросли всего на 5%. Основная причина торможения — падение поступлений по налогу на прибыль (в рублях, без учета инфляции). В среднем по России падение составило 9%, в Татарстане — 12%. Но все познается в сравнении: в Коми налог на прибыль рухнул в два раза, в ХМАО — на треть, в Кемеровской области — более чем на треть. 70 субъектов федерации оказались в дефиците, причем у ряда регионов он достигает критических 23–26%.</p>
+
+<p></p>
+
+<p>Обратим внимание на политику расходов. Многие регионы нарастили расходы на 10% при росте доходов в 5%. Москва, например, нарастила расходы на национальную экономику на 32% (транспорт, строительство), показав дефицитный бюджет. Пример профессионального управления бюджетом – Татарстан: он аккуратно оптимизировал расходы по всем направлениям, при этом ни разу не допустил сокращения социальных программ. Здравоохранение в республике выросло по расходам на 19%, по всем остальным социальным статьям - динамика тоже выше инфляции. И это правильно: экономить на людях – последнее дело. По итогам года, Татарстан — чемпион по бюджетной политике с нулевым дефицитом. Это минимизирует риски региона на 2026 год.</p>
+
+<p></p>
+
+<p>А риски высокие: в 2026 году регионы начнут «подрубать» расходы на дорожное строительство и транспорт. Если ваш бизнес связан с этими подрядами – будьте готовы. И в целом, если вы связаны с выплатами из бюджетов регионов – будьте аккуратней. Субъекты сокращают расходы на национальную экономику: это дорожное строительство, транспорт, ЖКХ. Начинают падать даже расходы на здравоохранение: рост на 4% в рублях – печальный. Если ваш бизнес связан с бюджетной «медицинской частью» – я вас предупредила. </p>
+
+<p></p>
+
+<p>Ресурс государственного патернализма практически исчерпан. Главная иллюзия, которую сегодня надо отбросить – это надежда на бесконечность бюджетные вливания как на основной и бесконечный драйвера роста экономики. </p>
+
+<p></p>
+
+<p>И, по известной пословице, сколько у вас пива, столько будет и песен – надо жить в расчете на собственный кошелек. Для бизнеса тщательный выбор приоритетов инвестирования – спасение от ненужного банковского кредита и возможность пройти через кризис без драматических потерь. </p>
+
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 40px 0 20px; color: var(--accent-red);">Что ждет бизнес и регионы в 2026 году</h3>
+                
+              <p>Уповать на то, что в 2026 году региональным бюджетам и бизнесу станет легче, не приходится. Для этого цены на нефть должны взлететь до 150 долларов за баррель, но прогнозировать геополитические потрясения и, тем более, политику Дональда Трампа я не возьмусь. Пока очевидно, что экономика вошла в 2026 год, не только продолжая спад, но  но и рука об руку со шлейфом новых вызовов. </p>
+
+<p></p>
+
+<p>Первый новый негативный тренд – неизбежное замедление поступлений от налога на прибыль и налога на доходы физических лиц (НДФЛ). Рост зарплат, вызванный дефицитом кадров, сдает позиции, а значит, и налоговая база расти прежними темпами не будет. Предприятия больше не могут повышать оплату труда в ущерб собственной рентабельности. Кроме того, снижение прибыли во многих секторах автоматически уменьшит поступления в региональные бюджеты, для которых этот налог – один из основных.</p>
+
+<p></p>
+
+<p>Второй тренд – резкое сжатие инвестиций. В России порядка 60% всех инвестиций осуществляются за счет собственных средств предприятий. Из-за резко возросшей налоговой нагрузки и высокой стоимости заемного капитала у бизнеса останется меньше свободных денег для развития. Это приведет к торможению инвестиционной активности по всей стране и отказу от долгосрочных проектов. Кредитоваться на развитие при текущих ставках Центрального Банка могут позволить себе либо структуры, выполняющие государственные заказы, либо монополисты.</p>
+
+<p></p>
+
+<p>Третий тренд касается межбюджетных отношений. Федеральный центр вряд ли будет щедр на безвозмездные трансферты регионам в 2026 году. Федеральному бюджету самому приходится экономить и концентрировать ресурсы на приоритетных направлениях, поэтому субъектам придется рассчитывать преимущественно на собственные силы и доходы. Отсюда четвертый тренд – вынужденное сокращение расходов регионов на развитие экономики, в том числе, дорогостоящей транспортной инфраструктуры.</p>
+
+<p></p>
+ 
+<p>Решения на уровне региона или компании не смогут переломить эти тренды, но снизить риски и смягчить удар с помощью качественного управления – возможно. Важно считать деньги и жить по средствам, как показывает опыт того же Татарстана. Также важно сохранить эффективный средний региональный бизнес. Успех теперь зависит не столько от близости к федеральной казне или наличия сырьевых ресурсов, сколько от диверсификации местной экономики и профессионализма управленческих команд на местах».</p>
+
+            </div>
+        </div>
+        `,
+        hse: `
+            <div style="background: #fff; padding: 20px 0;">
+            <p style="text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: #888; margin-bottom: 10px;">Материал для сайта НИУ ВШЭ</p>
+            
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; line-height: 1.2; margin-bottom: 20px; color: var(--text-dark);">
+                "Маркетинг – это не отдел, это философия": в Питерской Вышке прошел семинар с участием директора по маркетингу РБК
+            </h1>
+
+            <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.3rem; line-height: 1.4; color: #555; margin-bottom: 30px; border-left: 2px solid var(--accent-red); padding-left: 20px;">
+                В четверг, 3 октября, в Петербургском кампусе Высшей школы экономики прошел воркшоп с Андреем Сикорским, издателем журнала и директором по маркетингу РБК. Опытный практик рассказал о том, как сегодня работает маркетинг в медиакомпании, почему Котлер все еще актуален и какие новые проекты холдинга оказались самыми успешными. 
+            </p>
+
+            <div style="font-size: 0.95rem; line-height: 1.8; color: #333;">
+                <p>Сначала спикер рассказал о том, как маркетинговая концепция 4P реально работает в РБК, обеспечивая новые продукты и продажи. Студенты познакомились со схемой коммуникационной стратегии РБК и понятием ключевой компетенции в бизнесе. И отдельное внимание – позиционированию бренда.</p>
+
+                <blockquote style="border-left: 3px solid var(--accent-red); padding-left: 20px; margin: 30px 0; font-style: italic; color: #1a1a1a; background: #f9f9f9; padding: 20px;">
+                    «РБК начинался с распечаток котировок, сводок с рынка. История про нейтральность, цифры, факты, нечто свершившееся – это то, что во многом определило позиционирование РБК, – рассказал Андрей Сикорский. – Это, прежде всего, деловой, во многом новостной, на 62% нейтральный, доверенный и бизнесовый бренд». 
+                </blockquote>
+
+                <p>Отдельно затронули тему сегодняшних требований рынка к медиаменеджеру.</p>
+
+                <p>«Медиаменеджер – это не тот, кто придумывает контент, – отмечает Андрей Сикорский, –– это тот, кто смотрит на всю эту конструкцию, как на бизнес. Это значит, что хороший специалист должен обладать широким кругозором и быть сведущим во многих сферах».</p>
+
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 40px 0 20px; color: var(--accent-red);">От теории – сразу к практике!</h3>
+                
+                <p>Спикер предложил студентам примерить на себя роль маркетолога в РБК и решить несколько кейсов. Можно ли без вложений промоутировать бренд? Как увеличить аудиторию журнала, не увеличивая тираж? На эти вопросы участники встречи искали ответы в ходе дискуссии. </p>
+
+                <p>В одном из кейсов студентам было предложено найти способ увеличить аудиторию журнала с 900 тыс. читателей до 4 млн в год. Из вводных – исследование вовлеченности проводится по телефону, тираж не может превышать 130 тыс. экземпляров, менять контент нельзя. Основной доход издания – реклама и коммерческий контент.</p>
+
+                <p>Дискуссия вышла активной. Разобрали места распространения, где журнал может пройти через большее количество рук (не изменяя целевой аудитории). Предположили, что можно сделать издание большим, тяжелым и толстым, чтобы его было трудно унести домой. Подумали над тем, как прохожий взаимодействует с обложкой.</p>
+
+                <blockquote style="border-left: 3px solid var(--accent-red); padding-left: 20px; margin: 30px 0; font-style: italic; color: #1a1a1a; background: #f9f9f9; padding: 20px;">
+                    «Складываем вместе: журнал размером с виниловую пластинку – неудобный формат, чтобы нельзя было в рюкзак положить – придется оставить в месте презентационной выкладки; огромный логотип РБК на обложке – воздействует на подсознание, бренд вспомнят при телефонном опросе, и три разные обложки для одного тиража (!) – распространитель журнала выложит все три на полке, – резюмирует Андрей Сикорский итоги брейн-штурма. – А в результате – четырехкратное увеличение цифры аудитории, замеряемой исследовательской компанией, на которую ориентируется рекламодатель». 
+                </blockquote>
+
+                <p>В конце встречи спикеру задали вопрос о рекомендуемой к прочтению литературе, на что он ответил, что на первом месте находятся книги, которые расширяют кругозор и границы любопытства.</p>
+
+                <p>«Медиаменеджер не имеет права быть нелюбопытным. В момент, когда он становится нелюбопытным, он отправляется на свалку истории. Класс книг может быть любой, при условии, что он развивает ваше любопытство. Главное – читая, ответьте себе на вопрос: «зачем я читаю эту книгу?». Я, например, обожаю литературу о истории музыки и искусства, но это совершенно не значит, что регулярно использую полученные оттуда знания в повседневной работе», - говорит Сикорский.</p>
+            </div>
+        </div>
+        `,
+        report: `
+            <div style="background: #fff; padding: 20px 0;">
+            <p style="text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: #888; margin-bottom: 10px;">Репортаж</p>
+            
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; line-height: 1.2; margin-bottom: 20px; color: var(--text-dark);">
+                Город разводных… людей
+            </h1>
+
+            <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.3rem; line-height: 1.4; color: #555; margin-bottom: 30px; border-left: 2px solid var(--accent-red); padding-left: 20px;">
+                Чем более погожий день в Петербурге, тем больше людей на улицах города, в том числе и туристов. Вместе с ними на улицах города появляются и те, кто жаждет нажиться на гостях культурной столицы, причем, зачастую не самыми честными способами. 
+            </p>
+
+            <div style="font-size: 0.95rem; line-height: 1.8; color: #333;">
+                <p>Помимо водных экскурсий, конных прогулок с фиксированным прайсом есть и те, кто называет себя «уличными артистами», хотя в их деятельности прослеживается крайне мало общего с работой артиста. Речь идет о курсирующих по центру фальшивых Екатеринах, Петрах, рыцарях в железных доспехах, двухметровых конях и зебрах. Разберемся, что скрывается за словами «аниматор», «промоутер», во сколько обойдется «подкинуть коню на подкову» и почему честному уличному артисту нет места в городе.</p>
+
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 40px 0 20px; color: var(--accent-red);">Как все происходит?</h3>
+                
+                <p>«Орудует» хвостато-пернатое ОПГ, в основном, в центре города. «Точки» есть рядом с Казанским собором, около Спаса на крови, на территории дворцовой площади и рядом с аркой главного штаба, а также на Большой морской и Малой садовой улицах. Схема простая: «аниматоры» выбирают «жертву» и начинают «развод» с доброжелательной фразы, предложения обняться / погладить голубя…</p>
+
+                <div style="background: #fdfdfd; border: 1px solid #eee; padding: 25px; margin: 30px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.6;">
+                    <p style="margin-bottom: 10px;">– Молодой человек, здравствуйте, задержим на минуточку? Откуда приехали к нам? – механизм запущен.</p>
+                     </div>
+                     <p>Знающие люди обычно проходят мимо, туристы же, по незнанию, останавливаются и поддерживают диалог. </p>
+                    <div style="background: #fdfdfd; border: 1px solid #eee; padding: 25px; margin: 30px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.6;">
+                    <p style="margin-bottom: 10px;">– Ангелина, – улыбающаяся девушка в костюме гусара кокетливо протягивает руку вперед.</p>
+                    <p style="margin-bottom: 10px;">– Анатолий.</p>
+                    <p style="margin-bottom: 10px;">– Арестован! Надо вас проверить на шпионаж. Камеру включайте.</p>
+                </div>
+
+                <p>Пара ловких движений и телефон молодого человека с включённой камерой уже у напарницы Ангелины. Капкан активирован. На этой ступени Анатолия уже оценили: для иностранцев и особо мягких людей прайс, как правило, выше. В среднем, за 3 кадра просят от 900 до 1500 рублей.</p>
+
+                <div style="background: #fdfdfd; border: 1px solid #eee; padding: 25px; margin: 30px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.6;">
+                    <p style="margin-bottom: 10px;">– Улыбнулись, подтянулись, парадный выход из дворца.</p>
+                     </div>
+<p>Первое нажатие на сенсорный экран, вспышка, звук щелчка камеры.</p>
+
+ <div style="background: #fdfdfd; border: 1px solid #eee; padding: 25px; margin: 30px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.6;">
+                    <p style="margin-bottom: 10px;">– Как догадались, чуточку платненько, – заискивающе скандирует Ангелина, – девчонкам на мороженку. </p>
+<p style="margin-bottom: 10px;">– Платно?</p>
+<p style="margin-bottom: 10px;">– Конечно…</p>
+<p style="margin-bottom: 10px;">– Только улыбайтесь, а то вы очень серьезный, – доносится от напарницы. </p>
+<p style="margin-bottom: 10px;">– Хорошо? – все тот же заискивающий тон.</p>
+<p style="margin-bottom: 10px;">– Ну не знаю, надо посмотреть, есть ли что на карте.</p>
+
+                </div>
+
+                <p>Капкан захлопнулся. Теперь Анатолию не избежать мучений от стальных зубьев холодного металла. Вариантов развитий событий несколько: либо предстоят незапланированные траты, либо последуют неприятные разбирательства и трения, так еще и в глазах молоденьких девушек будет выглядеть скрягой и бедняком.  
+</p>
+<p>На этой ступени Анатолия уже оценили: для иностранцев и особо мягких людей прайс, как правило, выше. В среднем, за 3 кадра просят от 900 до 1500 рублей. </p>
+
+<div style="background: #fdfdfd; border: 1px solid #eee; padding: 25px; margin: 30px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.6;">
+                    <p style="margin-bottom: 10px;">– Царский танец, полонез, вот так вот положите ручку. Второй кадрик самый красивый, каждый у нас – 300, хорошо?</p>
+ </div>
+<p>О цене на такого рода услугу предупреждают редко, обычно уже в процессе фотосъемки, или, что встречается чаще, не предупреждают вовсе, либо говорят абстрактно: «сколько не жалко коню на подкову», «зебре на овёс», «гусару на барабан».</p>
+<div style="background: #fdfdfd; border: 1px solid #eee; padding: 25px; margin: 30px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.6;">
+                    <p style="margin-bottom: 10px;">– Каждый – триста?..</p>
+
+<p style="margin-bottom: 10px;">– Да, это только второй.</p>
+</div>
+Щелчок, вспышка.</p>
+<div style="background: #fdfdfd; border: 1px solid #eee; padding: 25px; margin: 30px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.6;">
+                    <p style="margin-bottom: 10px;">– Вы меня ограбить хотите?</p>
+<p style="margin-bottom: 10px;">– Посреди танца не бросают, так что второй и отпустим. </p>
+<p style="margin-bottom: 10px;">Не проходит и десяти секунд, как звучит фраза:</p>
+<p style="margin-bottom: 10px;">– Ну и чтобы дома не ревновали, ручки вот так скрестите, третий кадрик будет.</p>
+</div>
+Щелчок, вспышка.</p>
+<div style="background: #fdfdfd; border: 1px solid #eee; padding: 25px; margin: 30px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.6;">
+                    <p style="margin-bottom: 10px;">– Ну и с подружкой кадрик, может?</p>
+<p style="margin-bottom: 10px;">– Да, а то я ревновала! Со мной еще один и отпустим, – включается в разговор безымянная напарница.</p>
+<p style="margin-bottom: 10px;">Анатолий как безвольная тряпичная кукла переходит в загребущие руки рыженькой девушки. Щелчок, вспышка.</p>
+<p style="margin-bottom: 10px;">– Ну и на корточки присядьте, сделаем эксклюзивчик. Или не потяните? </p>
+<p style="margin-bottom: 10px;">– Я думаю, не надо…</p>
+<p style="margin-bottom: 10px;">– Точно?</p>
+<p style="margin-bottom: 10px;">– Думаю, да.</p>
+<p style="margin-bottom: 10px;">– Хорошо. Как вам удобнее: по карте или наличкой?</p>
+<p style="margin-bottom: 10px;">– Сейчас посмотрю, сколько на карте у меня.</p>
+</div>
+
+<p>Пока Анатолий копается в смартфоне, девушки участливо поддерживают диалог.</p>
+<div style="background: #fdfdfd; border: 1px solid #eee; padding: 25px; margin: 30px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.6;">
+                    <p style="margin-bottom: 10px;">– А на карте-то денег нет…</p>
+<p style="margin-bottom: 10px;">– Как вам удобно, платите наличкой, сдачу дадим, – в тон девушки, представившейся Ангелиной, прокрадываются раздраженные нотки.</p>
+<p style="margin-bottom: 10px;">– Получилось, что денег совсем нет…</p>
+<p style="margin-bottom: 10px;">– Так вас предупредили, что платно! – «гусарка» больше не заискивает, говорит холодно, клацает металлическими зубьями капкана. </p>
+</div>
+<p>Постепенно наш герой из «джентльмена» стал «придурком», у которого «не все в порядке с головой». По итогу, Анатолию удалось вырваться из цепких рук «промоутеров», но настроение, однозначно, было испорчено.</p>
+
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 40px 0 20px; color: var(--accent-red);">Законно ли это?</h3>
+                
+                <p>Вопрос о правомерности существования таких «аниматоров» в центре города открыт уже несколько лет. Интернет-обыватели предполагают, что власти города и полиция «в доле» с «бизнесменами», заведующими хвостато-крылатым ОПГ. </p>
+
+<div style="background: #fdfdfd; border: 1px solid #eee; padding: 25px; margin: 30px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.6;">
+                    <p style="margin-bottom: 10px;">— Полиция в доле, однозначно. Ближайший опорный пункт находится прямо в здании Эрмитажа. Попробуйте на Дворцовой что-то такое самостоятельно начать делать – сразу задержат и уведут туда! — негодует пользователь под ником Микола Марков в обсуждении, развернувшимся в комментариях под одним из постов об «аниматорах».</p>
+</div>
+<p>Однако те, кто предоставляет «фотоуслуги» гостям и жителям город считают свои действия вполне правомерными:</p>
+<div style="background: #fdfdfd; border: 1px solid #eee; padding: 25px; margin: 30px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.6;">
+                    <p style="margin-bottom: 10px;">— То, что у нас сначала берут голубей сфотографироваться и не спрашивают про оплату — проблема туристов, – рассказывает бизнес-леди, «орудующая» около Казанского собора. </p>
+</div>
+ <p>Мы решили послушать о «внутренней кухне» и обзвонить пару вакансий о поиске аниматоров для работы в центре города. На известном всем «hh.ru» объявлений не нашлось, зато «Авито» буквально пестрит открытыми вакансиями на почетную «должность» промоутера без совести. Видимо, текучка большая: по короткому запросу «аниматор, промоутер, ежедневные выплаты» нашлось более 30 результатов. Текст везде стандартный. Требования к сотруднику, исходя из текста, минимальны: требуется только время и желание работать. В месяц обещают 60.000-100.000 рублей за относительно непыльную работу. Резюмируем полученную в ходе звонков информацию. </p>
+
+ <p>Первую трубку снял мужчина, представился Андреем. Он набирает людей на «вакансию» Екатерины. Заверил, что трудоустройство идет по трудовому договору, есть ИП, зарегестрированное на имя Ивана Сергеевича Лебедева и все необходимые бумаги. Чтобы проверить эту информацию через единый реестр ЕГРИП, пришлось бы проверить более 35000 выписок, так что о реальности существования этого ИП остается только догадываться. <p>
+
+<div style="background: #fdfdfd; border: 1px solid #eee; padding: 25px; margin: 30px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.6;">
+                    <p style="margin-bottom: 10px;">—  Фотография стоит 300 рублей, сет – 900 рублей для группы туристов. Ваша зарплата складывается от количества сделанных фотографий. Пятьдесят процентов от выручки вы получаете в конце смены на руки.<p>
+</div>
+<p>На второй звонок ответила женщина:</p>
+<div style="background: #fdfdfd; border: 1px solid #eee; padding: 25px; margin: 30px 0; font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; line-height: 1.6;">
+                    <p style="margin-bottom: 10px;">— Мы оказываем гражданам, жителям Петербурга, гостям города платные фотоуслуги. В настоящий момент с белоснежными голубями декоративной породы. Выплаты у нас ежедневные, в среднем от трех до пяти тысяч за день – хороший процент, касса у ребят получается неплохая. </p>
+</div>
+ <p>В случае с голубями, трудоустройство оказалось неофициальным. На вопросы об ИП женщина по «ту» сторону провода повторяла одну и ту же фразу: «официального трудоустройства нет». Деятельность «фотобизнеса», с ее слов легальна, «все документы у нас есть соответствующие, правоохранительные органы с ними ознакомлены, с их стороны к нам вопросов не возникает».  </p>
+ <p>С вопросом о том, насколько в действительности законна подобного рода работа мы обратились к юристу:  </p>
+
+<div style="background: #f9f9f9; padding: 25px; margin: 30px 0; border-top: 2px solid var(--accent-red);">
+                    <p style="font-weight: bold; margin-bottom: 10px;">Юридическая справка:</p>
+                    <p style="font-size: 0.9rem; margin-bottom: 5px;">— Если мы говорим с гражданско-правовой точки зрения, то, в принципе, эта деятельность не содержит в себе ничего незаконного. Сделки до 10 тысяч рублей законны при заключении их в устной форме. Однако если после фотографирования требуют заплатить, а изначально эти условия не были озвучены, то сделка может считаться совершенной с пороком под влиянием заблуждения. В таком случае, горожане в праве не платить, а вымогательство будет квалифицироваться как мелкое хулиганство. Лицо, попавшее в такую ситуацию, имеет право обратиться в правоохранительные органы с заявлением по кодексу об административных правонарушениях.</p>
+
+<p style="font-size: 0.9rem;">— <strong>Статья 14.1 КоАП РФ «Осуществление предпринимательской деятельности без государственной регистрации или без специального разрешения». </p>
+<p style="font-size: 0.9rem;">— <strong>Статья 20.1. КоАП РФ «Мелкое хулиганство».</p>
+</div>
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 40px 0 20px; color: var(--accent-red);">Эпилог</h3>
+                <p>Основной пласт этого «бизнеса» рассчитан именно на туристов, которым не захочется портить себе настроение разбирательствами, обращениями в полицию, и будет проще «откупиться» от назойливых промоутеров.</p>
+
+<p>За время существования «фотобизнеса» было создано несколько десятков петиций. Одна из них даже набрала более пяти тысяч подписей и аниматоры на непродолжительный срок исчезли с улиц города. Однако, видимо, документы были приведены в порядок и хвостато-крылатый полк вновь вылез из-под полы. Вот такой настоящий бандитский Петербург! </p>
+<p>А пока власти города не спешат устранять это пятно с лица города, остается лишь руководствоваться пословицей: «предупрежден – значит вооружен».</p> 
+
+            </div>
+        </div>
+        `,
+        itmo: `
+            <div style="background: #fff; padding: 20px 0;">
+            <p style="text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: #888; margin-bottom: 10px;">Материал для сайта ИТМО</p>
+            
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; line-height: 1.2; margin-bottom: 20px; color: var(--text-dark);">
+                Все начинается с… шрифтов: студенты ИТМО разработали новый подход для генерации символов
+            </h1>
+
+            <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.3rem; line-height: 1.4; color: #555; margin-bottom: 30px; border-left: 2px solid var(--accent-red); padding-left: 20px;">
+                Что, если дизайнер сможет за пару минут получить новый шрифт и не задумываться о лицензиях или недостающих в наборе символах? Исследователи из Университета ИТМО предложили новый метод генерации шрифтов с помощью диффузионных нейросетей. Эта разработка может не только имитировать стиль оригинального шрифта, но и автоматически создавать недостающие глифы (конкретные начертания символа) для любых языков мира.
+            </p>
+
+            <div style="font-size: 0.95rem; line-height: 1.8; color: #333;">
+                <p>Гротеск, антиква, брусковый, акцидентный, рукописный – каждый со своим характером. Шрифты — не просто набор символов. Это визуальный язык, который определяет настроение текста, его читаемость и даже уровень доверия к написанному. Но за красивыми гарнитурами скрывается целый ворох ограничений: лицензионные барьеры, отсутствие поддержки для кириллицы, греческого, арабского или других письменностей. Большинство шрифтов рассчитаны на английский, а если дизайнеру нужен, например, символ «г» или «ө» — часто приходится искать компромиссы или вручную дорисовывать буквы.</p>
+
+                <p>Все большую популярность завоевывают генеративные нейросети, в том числе и как инструмент работы для дизайнеров. Современные алгоритмы умеют не только распознавать закономерности в структуре символов, но и «додумывать» недостающие элементы, сохраняя единый стиль. Исследование студенты ИТМО проводили, используя диффузионную модель — тип нейросети, который создает изображения, постепенно «очищая» их от шума и восстанавливая детали.</p>
+
+                <blockquote style="border-left: 3px solid var(--accent-red); padding-left: 20px; margin: 30px 0; font-style: italic; color: #1a1a1a; background: #f9f9f9; padding: 20px;">
+                    В основе архитектуры нейросети лежит модифицированная U-Net — популярная модель для обработки изображений. Она анализирует стиль исходного шрифта и структуру конкретного символа, а затем генерирует новый глиф, похожий на оригинальный. Нейросеть может создавать целые шрифтовые семьи — от латиницы до амхарского или монгольского письма. Это существенно упрощает работу дизайнерам, работающим в многоязычных проектах.
+                </blockquote>
+
+                <p>Исследователи обучили модель на 11 756 шрифтах латинского алфавита, а затем протестировали ее для создания недостающих символов. Оценку результата проводили профессиональные дизайнеры, основываясь на трех критериях:
+</p>
+
+                <ul style="margin: 20px 0; padding-left: 20px; list-style-type: none;">
+                    <li style="margin-bottom: 10px;">— <strong>Согласованность стиля</strong> — насколько буквы похожи друг на друга по стилю;</li>
+                    <li style="margin-bottom: 10px;">— <strong>Кернинг и трекинг</strong> — гармония между буквами в словах;</li>
+                    <li style="margin-bottom: 10px;">— <strong>Плотность текста</strong> — равномерность и читаемость.</li>
+                </ul>
+
+                <p>Средние оценки дизайнеров показали, что модель хорошо справляется с задачей. Однако, как отмечают сами авторы, для идеального результата еще предстоит улучшить обработку сложных символов (например, «ш» и «ю» иногда выбиваются из общего ряда) и оптимизировать работу с декоративными элементами.</p>
+
+                <p>В будущем команда планирует расширить набор данных, внедрить техники Few-Shot Learning (метод обучения нейросети на малом количестве примеров) и добавить новые метрики качества.</p>
+
+                <p style="margin-top: 30px; font-size: 0.8rem; color: #888;">
+                    Источник: <a href="https://ntv.ifmo.ru/ru/article/23672/generaciya_shriftov_na_osnove_analiza_stilya_i_struktury_simvolov_s_ispolzovaniem_diffuzionnyh_modeley.htm" target="_blank" style="color: var(--accent-red); text-decoration: none;">ntv.ifmo.ru</a>
+                </p>
+            </div>
+        </div>
+        `,
+        b2b: `
+            <div style="background: #fff; padding: 20px 0;">
+            <p style="text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: #888; margin-bottom: 10px;">Материал для Я-дзена (B2B сегмент)</p>
+            
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; line-height: 1.2; margin-bottom: 20px; color: var(--text-dark);">
+                Контейнер, который не захотели возвращать или итоги одного сочинского фестиваля
+            </h1>
+
+            <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.3rem; line-height: 1.4; color: #555; margin-bottom: 30px; border-left: 2px solid var(--accent-red); padding-left: 20px;">
+                Когда речь идет про Сочи, в голове рисуются пальмы, море и бесконечный праздник. Но если вам доводилось быть в числе организаторов крупных мероприятий, то знаете – за красивым фасадом скрывается суровая региональная специфика. 
+            </p>
+
+            <div style="font-size: 0.95rem; line-height: 1.8; color: #333;">
+                <p>И главная ее черта – дефицит качественной инфраструктуры «здесь и сейчас». Рассказываем историю, произошедшую на одном крупном молодежном фестивале.</p>
+
+                <div style="width: 100%; height: 250px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; margin: 30px 0; border: 1px dashed #ccc; color: #999; font-size: 0.8rem; letter-spacing: 1px;">
+                    [ МЕСТО ДЛЯ ОБЛОЖКИ: ФОТО СОЧИНСКОГО ФЕСТИВАЛЯ ]
+                </div>
+
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 40px 0 20px; color: var(--accent-red);">Найти иголку в стоге сочинского сена</h3>
+                
+              <p>Задача перед организаторами стояла, на первый взгляд, тривиальная: найти три 40-футовых контейнера. Но как говорится, дьявол – в деталях.  Нужны были не просто «коробки», а объекты в идеальном состоянии. Они должны были стоять на виду, в самом центре фестивальной жизни, и служить мобильными складами для еды и напитков. То есть это и функционал (холод, чистота), и эстетика. </p>
+ <p>Казалось бы, юг, порты рядом. Организаторы честно пытались найти подходящие варианты на месте. Итог – нулевой. Время шло, фестиваль – на носу, а ставить – нечего. </p>
+ <p>В логистике есть такое понятие – «качество стока». На юге качественный сток в аренду или быструю продажу разлетается моментально. Клиент оказался в ситуации, когда сроки поджимают, а ставить на площадку непрезентабельный объект – значит нанести удар по имиджу фестиваля.  </p>
+ <p>И тут на сцену выходим мы. В распоряжении нашей команды было ровно 5 дней на все: подбор, согласование, предпродажную подготовку и доставку через полстраны. </p>
+
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 40px 0 20px; color: var(--accent-red);">От Балтики до Черного моря</h3>
+                
+                <p>Почему Петербург? Именно здесь, на крупных терминалах, концентрируется «свежий» и эстетически пригодный парк. Мы проводили буквально «кастинг» среди 40-футовок по трем критериям:</p>
+
+                <ul style="margin: 20px 0; padding-left: 20px; list-style-type: none;">
+                    <li style="margin-bottom: 10px;">— <strong>Геометрия:</strong> ровные стенки, никаких вмятин;</li>
+                    <li style="margin-bottom: 10px;">— <strong>Внешний вид:</strong> чистое лакокрасочное покрытие (контейнер как арт-объект);</li>
+                    <li style="margin-bottom: 10px;">— <strong>Герметичность:</strong> стерильность и надежность для продуктов.</li>
+                </ul>
+
+                <div style="width: 100%; height: 200px; background: #f0f0f0; display: flex; align-items: center; justify-content: center; margin: 30px 0; border: 1px dashed #ccc; color: #999; font-size: 0.8rem; letter-spacing: 1px;">
+                    [ МЕСТО ДЛЯ ВИЗУАЛА: ПРОЦЕСС ПОГРУЗКИ / ТЕРМИНАЛ ]
+                </div>
+
+                <p>Когда «те самые» кандидаты были отобраны, начался настоящий логистический спринт. За 4 дня мы организовали доставку из Петербурга в Сочи. Кто хоть раз работал с трассой М-4, понимает: довезти три 40-футовки в такой срок, пройдя все фильтры и проверки, – почти искусство. Но у нас не было варианта «не успеть».</p>
+
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 40px 0 20px; color: var(--accent-red);">Почему один контейнер так и не вернулся</h3>
+                
+                <p>Контейнеры прибыли на площадку за сутки до открытия. Они идеально вписались в архитектуру фестиваля: минимализм, мощь, надежность. Целую неделю тысячи участников получали свежую еду и холодные напитки, даже не подозревая, какая драма разыгралась за кулисами этой поставки. </p>
+ <p>Но самое показательное в этой истории – финал. Знаете, как мы измеряем успех? Не сухими цифрами в отчетах. Один из организаторов настолько впечатлился состоянием контейнера, что после закрытия фестиваля… выкупил его в личное пользование. </p>
+ <p>Это и есть то, что мы называем ценностью. В условиях, когда рынок привык работать по принципу «и так сойдет», появление качественного сервиса – всегда событие. Мы не просто продаем или сдаем в аренду металл. Мы создаем готовые решения для тех, кто не готов на компромиссы с имиджем. И когда клиент решает оставить контейнер себе – это лучший маркер того, что мы попали в стандарт качества.  </p>
+                <p style="margin-top: 30px; font-weight: 600;">Мы не просто продаем или сдаем в аренду металл. Мы создаем готовые решения для тех, кто не готов на компромиссы с имиджем.</p>
+            </div>
+        </div>
+        `,
+        'tetto-smm': `
+            <div style="background: #fff; padding: 20px 0;">
+            <p style="text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: #888; margin-bottom: 10px;">Материал для социальных сетей</p>
+            
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; line-height: 1.2; margin-bottom: 20px; color: var(--text-dark);">
+                Tetto Italian Bistro: эстетика итальянского бранча
+            </h1>
+
+            <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.3rem; line-height: 1.4; color: #555; margin-bottom: 30px; border-left: 2px solid var(--accent-red); padding-left: 20px;">
+                Приглашаем вместе с нами совершить путешествие к берегам Средиземного моря, зеленых виноградников и оливковых рощ на бранче, посвященном обновленному меню ресторана Tetto Italian Bistro.
+            </p>
+
+            <div style="font-size: 0.95rem; line-height: 1.8; color: #333;">
+                <p>Ресторан Тетто – это уголок солнечной Италии прямо посреди дождливой осени Северной столицы. С командой дизайнеров мы создали идеальные условия для романтического ужина или дружеской встречи. </p>
+
+                
+                        <p>Наш интерьер наполнен светом и уютом: латунные элементы, рогожка, натуральные фактуры, старинная лепнина, свечи, фрески и античные колонны, антикварный рояль сливаются в гармоничное целое. А сочетание натуральных материалов и каменных деталей перенесет вас на южное побережье Италии.
+                    </p>
+                </div>
+
+                <p>Мы страстно увлечены кулинарным искусством и хотим поделиться нашим видением итальянской кухни. В Тетто традиции Италии гармонично переплетаются с современными технологиями. Разработанное шеф-поваром Василием Окуловым меню – это свежий взгляд на классическую итальянскую кухню. </p>
+                
+                <p>Оригинальные сочетания и мастерское исполнение погрузят в атмосферу кулинарного волшебства. Каждое блюдо — это симфония традиций и современных изысков, которые радуют и вдохновляют.</p>
+
+               <p><strong>Хорошим дополнением к трапезе станет широкий ассортимент коктейлей, разбитых на три главы: </p>
+                <div style="margin: 20px 0; padding-left: 10px; border-left: 1px solid #eee;">
+                    <p style="margin-bottom: 10px;">🍸 <strong>Mi To</strong> с горькими настойками;</p>
+                    <p style="margin-bottom: 10px;">🍸 <strong>Tetto</strong>, где Италия встречается с инновациями;</p>
+                    <p style="margin-bottom: 10px;">🍸 <strong>Senza alcol</strong> для тех, кто предпочитает оставаться трезвым, но желает быть частью этой чудесной вечеринки.</p>
+                </div>
+                </div>
+
+                <p style="margin-top: 40px; text-align: center; font-family: 'Playfair Display', serif; font-size: 1.2rem; letter-spacing: 1px; color: var(--accent-red);">
+                    Ваше идеальное гастрономическое путешествие начинается здесь!
+                </p>
+            </div>
+        </div>
+        `,
+        balcon: `
+            <div style="background: #fff; padding: 20px 0;">
+            <p style="text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: #888; margin-bottom: 10px;">Материал для лаундж-бара Balcon</p>
+            
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; line-height: 1.2; margin-bottom: 20px; color: var(--text-dark);">
+                Оазис отдыха в сердце Петербурга
+            </h1>
+
+            <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.3rem; line-height: 1.4; color: #555; margin-bottom: 30px; border-left: 2px solid var(--accent-red); padding-left: 20px;">
+                Лаундж-бар Balcon – нетривиальное место для встречи с друзьями с видом на Северную столицу. Это отличное пространство для общения, отдыха и неспешного наслаждения прекрасными моментами жизни.
+            </p>
+
+            <div style="font-size: 0.95rem; line-height: 1.8; color: #333;">
+                <p>Если бы Balcon был парфюмом, то он пах теплой дружеской встречей, свежим воздухом и вечерними огнями города. Бар расположился на стильной видовой террасе, уютные панорамные окна создают светлую и воздушную атмосферу даже в самые дождливые и пасмурные дни.</p>
+
+                <div style="background: #f9f9f9; padding: 20px; margin: 25px 0; border-right: 3px solid var(--accent-red); text-align: right;">
+                    <p style="margin: 0; font-weight: bold; color: var(--accent-red);">SPECIAL OFFER:</p>
+                    <p style="margin: 0;">По будням с 12:00 до 16:00 действует 20% скидка на блюда.</p>
+                    <p style="margin: 0;">Кальян по будням (12:00 – 18:00) — всего за 1090 рублей.</p>
+                </div>
+
+                <p>А по выходным Balcon наполняется зажигательной музыкой от диджеев, превращая времяпрепровождение в настоящий праздник души и тела. Кальянная культура здесь находится на высоком уровне: авторские сочетания приятно удивят даже самых заядлых ценителей.</p>
+
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 40px 0 20px; color: var(--accent-red);">Летнее меню: Рекомендации Balcon</h3>
+                
+                <div style="display: grid; gap: 20px; margin-bottom: 30px;">
+                    <div style="border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                        <p style="font-weight: bold; color: #1a1a1a; margin-bottom: 5px;">🍸 Peach Ice Tea Non Alc</p>
+                        <p style="font-size: 0.9rem; color: #666; line-height: 1.5;">Освежающий нектараиновый сироп в сочетании с персиками, мятой и благородным зеленым чаем.</p>
+                    </div>
+                    <div style="border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                        <p style="font-weight: bold; color: #1a1a1a; margin-bottom: 5px;">🍸 Tropical Ice Tea Non Alc</p>
+                        <p style="font-size: 0.9rem; color: #666; line-height: 1.5;">Сочетание медово-имбирного сиропа, пюре маракуйи и нежного жасминового чая.</p>
+                    </div>
+                    <div style="border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                        <p style="font-weight: bold; color: #1a1a1a; margin-bottom: 5px;">🍸 Coco Bramble Shake Non Alc</p>
+                        <p style="font-size: 0.9rem; color: #666; line-height: 1.5;">Симфония из нежного кокосового молока, сладкого ежевичного сиропа и воздушной пены.</p>
+                    </div>
+                    <div style="border-bottom: 1px solid #eee; padding-bottom: 15px;">
+                        <p style="font-weight: bold; color: #1a1a1a; margin-bottom: 5px;">🍸 Elderflower Spritz Alc</p>
+                        <p style="font-size: 0.9rem; color: #666; line-height: 1.5;">Лаймовый и мятный сиропы, дополненные игристым просекко и легкой содовой.</p>
+                    </div>
+                </div>
+
+                <p style="margin-top: 40px; font-weight: 600; text-align: center; border-top: 1px solid #eee; padding-top: 20px;">
+                    Независимо от того, решите ли вы расслабиться с кальяном или провести время в компании друзей, Balcon ждет вас!
+                </p>
+            </div>
+        </div>
+        `,
+        'tetto-rest': `
+            <div style="background: #fff; padding: 20px 0;">
+            <p style="text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; color: #888; margin-bottom: 10px;">Материал для ресторана TÉTTO</p>
+            
+            <h1 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; line-height: 1.2; margin-bottom: 20px; color: var(--text-dark);">
+                TÉTTO: Итальянское прочтение в ритме мегаполиса
+            </h1>
+
+            <p style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.3rem; line-height: 1.4; color: #555; margin-bottom: 30px; border-left: 2px solid var(--accent-red); padding-left: 20px;">
+                Ресторан TÉTTO — это стильное бистро, где итальянская кухня встречается с современными гастрономическими трендами! Если вы ищете место, где на каждом шагу ощущаются вкус и креативность, TÉTTO станет идеальным выбором.
+            </p>
+
+            <div style="font-size: 0.95rem; line-height: 1.8; color: #333;">
+                <p>Наш шеф-повар Василий Окулов, выпускник уважаемых кулинарных школ, создал меню, в котором классические итальянские рецепты появляются в новом прочтении. Погрузитесь в мир гастрономического искусства: особенность наших блюд в новых текстурах и смелых комбинациях. 🍝</p>
+
+                <div style="background: #fdfdfd; border: 1px solid #eee; padding: 25px; margin: 30px 0;">
+                    <p style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--accent-red); margin-bottom: 15px;">Гастрономические акценты:</p>
+                    <ul style="list-style: none; padding: 0; font-size: 0.9rem;">
+                        <li style="margin-bottom: 8px;">• <strong>Гель из черного лайма</strong> в тандеме с риетом;</li>
+                        <li style="margin-bottom: 8px;">• <strong>Мусс из соуса Бешамель</strong> для лазаньи;</li>
+                        <li style="margin-bottom: 8px;">• <strong>Попкорн из гречки</strong> в сочетании с филе-миньон из баклажана.</li>
+                    </ul>
+                </div>
+
+                <p>Наш технологичный коктейльный бар предлагает разнообразие напитков, разделенных на три группы: <strong>Mi To</strong>, <strong>Tetto</strong> и <strong>Senza alcol</strong>.</p>
+
+                <h3 style="font-family: 'Playfair Display', serif; font-size: 1.5rem; margin: 40px 0 20px; color: var(--accent-red);">Фокус на блюдо: Паппарделле с телячьей щекой</h3>
+                
+                <p>Паппарделле — это большие плоские макароны, которые происходят из Тосканы. Мы готовим их собственноручно, добавляя свежую петрушку для яркости вкуса. Мясо для блюда готовится по методу су-вид: говядину выдерживают при температуре 50–70 градусов в течение 12 часов.</p>
+
+                <div style="display: flex; gap: 20px; margin: 30px 0; align-items: center;">
+                    <div style="flex: 1; height: 1px; background: #eee;"></div>
+                    <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 1.2rem; color: #1a1a1a;">Anatomy of Taste</div>
+                    <div style="flex: 1; height: 1px; background: #eee;"></div>
+                </div>
+
+                <p>Подается блюдо под насыщенным соусом жу, приготовленным из запеченных куриных крыльев, лука, чеснока, моркови и сельдерея. 🍒 «Вишенка на пасте» – обжаренные вешенки и шампиньоны, которые получают ароматный акцент от тимьяна и белого вермута, в сочетании с кремовым сливочным соусом.</p>
+                
+                <p>Подача блюда также заслуживает внимания: яркие соцветия брокколи не только украшают тарелку, но и придают хрустящую текстуру. Благодаря обилию деталей каждый кусочек пасты становится океаном вкусовых оттенков.</p>
+
+                <p style="margin-top: 40px; text-align: center; font-family: 'Playfair Display', serif; font-size: 1.1rem; padding: 20px; border: 1px solid var(--accent-red);">
+                    TÉTTO — это место, где каждый станет свидетелем гастрономических экспериментов. Приходите и убедитесь сами!
+                </p>
+            </div>
+        </div>
+        `
+    };
+
+    function toggleMainFolder() {
+        const folder = document.getElementById('text-folder');
+        const status = document.getElementById('folder-status');
+        if (folder.style.display === 'none') {
+            folder.style.display = 'block';
+            status.innerText = '(ЗАКРЫТЬ СПИСОК)';
+            folder.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            folder.style.display = 'none';
+            status.innerText = '(ОТКРЫТЬ СПИСОК РАБОТ)';
+        }
+    }
+
+    function showArticle(key) {
+        const display = document.getElementById('article-display');
+        const content = document.getElementById('article-content');
+        
+        // Убираем активный класс у всех кнопок
+        document.querySelectorAll('.text-nav-btn').forEach(btn => btn.classList.remove('active'));
+        // Добавляем нажатой
+        event.target.classList.add('active');
+
+        content.innerHTML = articles[key] + '<br><button onclick="window.scrollTo({top: document.getElementById(\'text-folder\').offsetTop, behavior: \'smooth\'})" style="background:transparent; border:1px solid #ddd; padding: 10px 20px; cursor:pointer; font-size:0.7rem;">↑ К НАВИГАЦИИ</button>';
+        display.style.display = 'block';
+        
+        // Плавный скролл к началу текста
+        setTimeout(() => {
+            display.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }, 100);
+    }
+</script>
+
+<script>
+    function toggleTexts() {
+        var content = document.getElementById("text-samples-content");
+        if (content.style.display === "none") {
+            content.style.display = "block";
+            content.scrollIntoView({ behavior: 'smooth' });
+        } else {
+            content.style.display = "none";
+            document.getElementById("portfolio").scrollIntoView({ behavior: 'smooth' });
+        }
+    }
+</script>
+
+    <footer id="contact" style="background: var(--text-dark); color: white; padding: 60px 20px; text-align: center;">
+        <p>Telegram: @d_s_m | Дарья Мамаева © 2026</p>
+    </footer>
+
+    <script>
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                if (elementTop < windowHeight - 100) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+
+        function openCase(caseId) {
+    document.getElementById('case-overlay').style.display = 'block';
+    document.body.style.overflow = 'hidden'; // Запрещаем прокрутку сайта под оверлеем
+}
+
+function closeCase() {
+    document.getElementById('case-overlay').style.display = 'none';
+    document.body.style.overflow = 'auto'; // Возвращаем прокрутку
+}
+
+// Закрытие при клике вне контента
+window.onclick = function(event) {
+    let overlay = document.getElementById('case-overlay');
+    if (event.target == overlay) {
+        closeCase();
+    }
+}
+   
+    </script>
+
+
+
+    
+</body>
+</html>
